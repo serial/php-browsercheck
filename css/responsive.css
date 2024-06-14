@@ -1,0 +1,11 @@
+@media only screen and (max-width: 1280px) {
+  .data-points-wrapper {
+    width: 90%;
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media only screen and (max-width: 768px) {
+  .data-points-wrapper {
+    grid-template-columns: 1fr;
+  }
+}

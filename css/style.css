@@ -1,0 +1,233 @@
+/*!
+* Description: Less file for the browser check app
+* Author: Michael Höse
+* GitHub: https://github.com/serial
+* Website: https://msn-systems.de
+*/
+@import "../assets/fonts/roboto-mono-v23-latin/roboto-mono.css";
+@import "../assets/fonts/roboto-mono-v23-latin/roboto-mono.css";
+* {
+  box-sizing: border-box;
+}
+body,
+html {
+  min-height: 100vh;
+  background: linear-gradient(180deg, #83f3d1 0%, #287c48 100%);
+  margin: 0;
+  font-family: "Open Sans", 'Helvetica', sans-serif;
+  font-size: 1rem;
+  font-weight: 400;
+  display: flex;
+  flex-direction: column;
+}
+body {
+  display: flex !important;
+}
+.hidden {
+  display: none !important;
+}
+.text-center {
+  text-align: center;
+}
+.browser-check-container .browser-check-content {
+  width: 50%;
+  margin: 2rem auto 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.browser-check-container .browser-check-content .browser-check-title {
+  font-size: 1.6rem;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+}
+.browser-check-container .browser-check-content .browser-check-title h1,
+.browser-check-container .browser-check-content .browser-check-title h2 {
+  margin: 0;
+}
+.data-points-wrapper {
+  width: 75%;
+  margin: 1rem auto 1rem;
+  display: grid;
+  font-family: "Open Sans", 'Helvetica', sans-serif;
+  font-size: 1rem;
+  font-weight: 400;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+.data-point {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  overflow: hidden;
+  padding: 25px;
+}
+.data-point .label {
+  display: block;
+  font-size: 14px;
+  opacity: 0.5;
+  font-family: "Roboto Mono", Monospaced, 'Helvetica', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 300;
+}
+.data-point hr {
+  border: 1px solid black;
+  width: 100%;
+  display: block;
+  opacity: 0.25;
+}
+.data-point .value {
+  font-size: 26px;
+  display: block;
+  text-transform: capitalize;
+}
+.data-point.window-size .value {
+  text-transform: none;
+}
+.data-point.window-size .value:after {
+  content: " px";
+}
+.actions {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 60%;
+  margin: 0 auto;
+  column-gap: 2rem;
+}
+.button {
+  background-color: #222;
+  border-radius: 4px;
+  color: #fff;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.5;
+  margin: 0;
+  padding: 9px 20px 8px;
+  position: relative;
+  text-align: center;
+  text-transform: uppercase;
+  transition: all 0.2s ease-in-out;
+}
+.button.disabled {
+  background-color: black;
+  cursor: not-allowed;
+  pointer-events: none;
+  opacity: 0.65;
+}
+.button:hover {
+  background-color: black;
+}
+.response {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.response #response-message {
+  margin: 2rem auto;
+  padding: 1rem 2rem;
+  border: 1px solid #fff;
+  font-size: 1.2rem;
+  text-align: center;
+  display: none;
+}
+.response #response-message.success {
+  background: #319828;
+  color: #fff;
+}
+.response #response-message.error {
+  background: #bc2727;
+  color: #fff;
+}
+.data-info {
+  margin: 1rem auto;
+  padding: 1rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 75%;
+  font-family: "Roboto Mono", Monospaced, 'Helvetica', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 300;
+}
+.data-info .small {
+  font-size: 0.8rem;
+}
+footer {
+  margin: 2rem 0;
+}
+footer span {
+  color: #fff;
+}
+footer a {
+  color: #000;
+  text-decoration: none;
+  transition: all 0.2s ease-in-out;
+}
+footer a:hover {
+  color: #fff;
+}
+footer .separator {
+  background-color: #000;
+  height: 2px;
+  max-width: 2rem;
+  margin: 0 auto 2rem;
+  opacity: 0.5;
+}
+footer .copyright {
+  font-family: "Roboto Mono", Monospaced, 'Helvetica', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: #000;
+  text-align: center;
+}
+@media only screen and (max-width: 1280px) {
+  .browser-check-container .browser-check-content {
+    width: 90%;
+  }
+  .browser-check-container .browser-check-content .browser-check-title {
+    font-size: 1.4rem;
+  }
+  .browser-check-container .data-points-wrapper {
+    width: 90%;
+    grid-template-columns: 1fr 1fr;
+  }
+  .browser-check-container .actions {
+    width: 90%;
+    margin: 0 auto 2rem;
+  }
+}
+@media only screen and (max-width: 768px) {
+  .browser-check-container .browser-check-content .browser-check-title {
+    font-size: 1.2rem;
+  }
+  .browser-check-container .data-points-wrapper {
+    grid-template-columns: 1fr;
+  }
+  .browser-check-container .data-points-wrapper .data-point {
+    padding: 5px 25px;
+  }
+  .browser-check-container .data-points-wrapper .label {
+    text-align: right;
+  }
+  .browser-check-container .data-points-wrapper .value {
+    font-size: 1.2rem;
+  }
+}
+@media only screen and (max-width: 400px) {
+  .browser-check-container .actions {
+    flex-direction: column;
+    row-gap: 1rem;
+  }
+}
+@media only screen and (max-width: 360px) {
+  .browser-check-container .browser-check-content {
+    width: 90%;
+  }
+  .browser-check-container .browser-check-content .browser-check-title {
+    font-size: 0.8rem;
+  }
+}

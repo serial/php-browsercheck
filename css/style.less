@@ -1,0 +1,225 @@
+/*!
+* Description: Less file for the browser check app
+* Author: Michael Höse
+* GitHub: https://github.com/serial
+* Website: https://msn-systems.de
+*/
+
+@b: #000;
+@w: #fff;
+@success: #319828;
+@error: #bc2727;
+
+@import (css) "../assets/fonts/roboto-mono-v23-latin/roboto-mono.css";
+@import (css) "../assets/fonts/roboto-mono-v23-latin/roboto-mono.css";
+
+.f1(@size: 1rem, @weight: 400) {
+  font-family: "Open Sans", 'Helvetica', sans-serif;
+  font-size: @size;
+  font-weight: @weight;
+}
+
+.mono(@size: 1rem, @weight: 400) {
+  font-family: "Roboto Mono", Monospaced, 'Helvetica', sans-serif;
+  font-size: @size;
+  font-weight: @weight;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body, html {
+  min-height: 100vh;
+  //background: #6DE58D;
+  //background: #83f3d1;
+  //gradient background
+  background: linear-gradient(180deg, #83f3d1 0%, #287c48 100%);
+  margin: 0;
+  //font-family: "Farfetch Basis", Roboto, "Helvetica Neue", Arial, sans-serif;
+  .f1;
+  display: flex;
+  flex-direction: column;
+}
+
+body {
+  display: flex !important;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.browser-check-container {
+  .browser-check-content {
+    width: 50%;
+    margin: 2rem auto 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .browser-check-title {
+      font-size: 1.6rem;
+      margin-bottom: 1rem;
+      text-transform: uppercase;
+      h1, h2 {
+        margin: 0;
+      }
+    }
+  }
+}
+
+
+.data-points-wrapper {
+  width: 75%;
+  margin: 1rem auto 1rem;
+  display: grid;
+  //font-family: sans-serif;
+  .f1;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.data-point {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  overflow: hidden;
+  padding: 25px;
+
+  .label {
+    display: block;
+    font-size: 14px;
+    opacity: 0.5;
+    .mono(0.8rem, 300);
+  }
+
+  hr {
+    border: 1px solid black;
+    width: 100%;
+    display: block;
+    opacity: 0.25;
+  }
+
+  .value {
+    font-size: 26px;
+    display: block;
+    text-transform: capitalize;
+  }
+
+  &.window-size {
+    .value {
+      text-transform: none;
+      &:after {
+        content: " px";
+      }
+    }
+  }
+}
+
+
+
+.actions {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 60%;
+  margin: 0 auto;
+  column-gap: 2rem;
+}
+.button {
+  background-color: #222;
+  border-radius: 4px;
+  color: @w;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.5;
+  margin: 0;
+  padding: 9px 20px 8px;
+  position: relative;
+  text-align: center;
+  text-transform: uppercase;
+  transition: all 0.2s ease-in-out;
+  &.disabled {
+    background-color: black;
+    cursor: not-allowed;
+    pointer-events: none;
+    opacity: 0.65;
+  }
+  &:hover {
+    background-color: black;
+  }
+}
+
+.response {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  #response-message {
+    margin: 2rem auto;
+    padding: 1rem 2rem;
+    border: 1px solid @w;
+    font-size: 1.2rem;
+    text-align: center;
+    display: none;
+    &.success {
+      background: @success;
+      color: @w;
+    }
+    &.error {
+      background: @error;
+      color: @w;
+    }
+  }
+}
+
+.data-info {
+  margin: 1rem auto;
+  padding: 1rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 75%;
+  .mono(0.8rem, 300);
+  .small {
+    font-size: 0.8rem;
+  }
+}
+
+footer {
+  margin: 2rem 0;
+  span {
+    color: @w;
+  }
+  a {
+    color: @b;
+    text-decoration: none;
+    transition: all 0.2s ease-in-out;
+    &:hover {
+      //text-decoration: underline;
+      color: @w;
+    }
+  }
+  .separator {
+    background-color: @b;
+    height: 2px;
+    max-width: 2rem;
+    margin: 0 auto 2rem;
+    opacity: 0.5;
+  }
+  .copyright {
+    .mono(0.8rem, 500);
+    color: @b;
+    text-align: center;
+  }
+}
+
+
+@import "responsive.less";
