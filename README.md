@@ -11,8 +11,9 @@ If you use this project, ideas or any part of the code, I kindly ask that you me
 * Composer to install dependencies (Optional) 
 
 # Screenshot
+Desktop and Mobile view
 ![Screenshot](https://github.com/serial/php-browsercheck/blob/master/screenshot.png)  
-![Screenshot Raw](https://github.com/serial/php-browsercheck/blob/master/screenshot.png?raw=true)
+![Screenshot Mobile](https://github.com/serial/php-browsercheck/blob/master/screenshot-mobile.png)
 
 # Installation
 1. Clone this repository
@@ -57,9 +58,11 @@ If you use this project, ideas or any part of the code, I kindly ask that you me
 * Optimized for mobile devices
 
 
-# Notes
-For updating the browser and device detection, you can use the composer package manager.
-You can easily update the WhichBrowser library by running the command `composer update whichbrowser/parser` in the project folder.
+# Dev Notes
+- For updating the browser and device detection, you can use the composer package manager.
+  - You can easily update the WhichBrowser library by running the command `composer update whichbrowser/parser` in the project folder.
+- Styling is done with LESS and compiled to CSS
+
 
 
 # References
