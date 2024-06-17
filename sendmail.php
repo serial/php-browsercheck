@@ -21,7 +21,7 @@ $array = $_POST['content'];
 $data = array();
 foreach ($array as $key => $value) {
 	//echo $key . '. => ' . $value;
-	$value = str_replace("\n",": ", $value);
+	$value = str_replace("\n", ": ", $value);
 	$data[$key] = $value;
 }
 
@@ -32,112 +32,111 @@ $message = '<b>Browser Check Data</b> <br><br>';
  * Iterate over the array and append the values to the message
  */
 foreach ($data as $key => $value) {
-	$message .= ($key+1).' --- '.$value . "<br>";
+	$message .= ($key + 1) . ' --- ' . $value . "<br>";
 }
 
 $message .= "<br>";
 $message .= "Timestamp: " . date('d.m.Y H:i:s', $_SERVER['REQUEST_TIME']);
 $message .= "<br><br>";
-$message .= 'IP: '.$_SERVER['REMOTE_ADDR'];
+$message .= 'IP: ' . $_SERVER['REMOTE_ADDR'];
 $message .= "<br>";
-$message .= 'Host: '.$_SERVER['HTTP_HOST'];
+$message .= 'Host: ' . $_SERVER['HTTP_HOST'];
 $message .= "<br>";
-$message .= 'Referer: '.$_SERVER['HTTP_REFERER'];
+$message .= 'Referer: ' . $_SERVER['HTTP_REFERER'];
 $message .= "<br>";
-$message .= 'Browser locales: '.$_SERVER['HTTP_ACCEPT_LANGUAGE'];
+$message .= 'Browser locales: ' . $_SERVER['HTTP_ACCEPT_LANGUAGE'];
 $message .= "<br>";
-$message .= 'User-Agent: '.$_SERVER['HTTP_USER_AGENT'];
+$message .= 'User-Agent: ' . $_SERVER['HTTP_USER_AGENT'];
 
 
-
-if(USE_PHPMAILER) {
-
+if (USE_PHPMAILER) {
+	
 	try {
-    /*
-     * For the working ajax request answer in json format on frontend, the debug needs to be set to 0 !!!
-     * To enable verbose debug output, use:
-     * 0 = off
-     * 1 = client messages
-     * 2 = client and server messages
-     * 3 = client, server and connection messages
-     */
+		/*
+		 * For the working ajax request answer in json format on frontend, the debug needs to be set to 0 !!!
+		 * To enable verbose debug output, use:
+		 * 0 = off
+		 * 1 = client messages
+		 * 2 = client and server messages
+		 * 3 = client, server and connection messages
+		 */
 		//$mail->SMTPDebug = SMTP::DEBUG_SERVER;
-    $mail->SMTPDebug = 0;
+		$mail->SMTPDebug = 0;
 		
-    $mail->isSMTP();                                              //Send using SMTP
-		$mail->Host       = MAIL_HOST;                                //Set the SMTP server to send through
-		$mail->SMTPAuth   = true;                                     //Enable SMTP authentication
-    $mail->Username   = MAIL_USERNAME;                            //SMTP username
-		$mail->Password   = MAIL_PASSWORD;                            //SMTP password
-		$mail->SMTPSecure = MAIL_SECURITY;                            //Enable implicit TLS encryption
-		$mail->Port       = MAIL_PORT;                                //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
-		$mail->SMTPAutoTLS = false;															      //needs to be enabled on localhost
-
+		$mail->isSMTP();                                              //Send using SMTP
+		$mail->Host 				= MAIL_HOST;                                //Set the SMTP server to send through
+		$mail->SMTPAuth 		= true;                                     //Enable SMTP authentication
+		$mail->Username 		= MAIL_USERNAME;                            //SMTP username
+		$mail->Password 		= MAIL_PASSWORD;                            //SMTP password
+		$mail->SMTPSecure 	= MAIL_SECURITY;                            //Enable implicit TLS encryption
+		$mail->Port 				= MAIL_PORT;                                //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+		$mail->SMTPAutoTLS 	= false;                                    //needs to be enabled on localhost
+		
 		//Recipients
 		$mail->setFrom(MAIL_FROM, MAIL_FROMNAME);
 		$mail->addAddress(MAIL_TO);     //Add a recipient
 		//$mail->addReplyTo(MAIL_REPLYTO, MAIL_FROMNAME);
 		//$mail->addCC('cc@example.com');
 		//$mail->addBCC('bcc@example.com');
-
+		
 		//Attachments
 		//$mail->addAttachment('/var/tmp/file.tar.gz');         //Add attachments
 		//$mail->addAttachment('/tmp/image.jpg', 'new.jpg');    //Optional name
-
+		
 		//Content
 		$mail->isHTML(true);                                  //Set email format to HTML
-		$mail->Subject = 'Browser Check - ' . $data[0];							// Subject with Token
-		$mail->Body    = $message;
+		$mail->Subject = 'Browser Check - ' . $data[0];              // Subject with Token
+		$mail->Body = $message;
 		//$mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
-
-		//to simulate success mailsend, because localhost is not able to send mails
-    //$phpmailer_success = true;
 		
-    $phpmailer_success = $mail->send();
-    
-		if($phpmailer_success) {
+		//to simulate success mailsend, because localhost is not able to send mails
+		//$phpmailer_success = true;
+		
+		$phpmailer_success = $mail->send();
+		
+		if ($phpmailer_success) {
 			echo json_encode(array(
-				'message' => 'Hooray, thank you for submitting the information! <br /><br />' . $data[0] . ' <br />Please keep it for further reference.',
-				'status' => 'success'
-			));
+												 'message' => 'Hooray, thank you for submitting the information! <br /><br />' . $data[0] . ' <br />Please keep it for further reference.',
+												 'status'  => 'success'
+											 ));
 		} else {
 			echo json_encode(array(
-				'message' => 'The Mail could not be sent! <br /><br />Please try again later or contact the administrator.',
-				'status' => 'error'
-			));
+												 'message' => 'The Mail could not be sent! <br /><br />Please try again later or contact the administrator.',
+												 'status'  => 'error'
+											 ));
 		}
-
+		
 	} catch (Exception $e) {
 		echo json_encode(array('message' => 'Message could not be sent. Mailer Error: ', $mail->ErrorInfo));
 	}
-
+	
 } else {
-
+	
 	$to = MAIL_TO;
-	$subject = 'Browser Check - ' . $data[0];												// Subject with Token
-
+	$subject = 'Browser Check - ' . $data[0];                        // Subject with Token
+	
 	$headers = 'From: ' . MAIL_FROM . "\r\n";
-  //$headers .=	'Reply-To: ' . MAIL_REPLYTO . "\r\n" ;
-
-	$headers .=	'X-Mailer: PHP/' . phpversion();
+	//$headers .=	'Reply-To: ' . MAIL_REPLYTO . "\r\n" ;
+	
+	$headers .= 'X-Mailer: PHP/' . phpversion();
 	$headers .= "MIME-Version: 1.0\r\n";
 	$headers .= "Content-Type: text/html; charset=UTF-8\r\n";
- 
+	
 	//to simulate success mailsend, because localhost is not able to send mails
 	//$sendmail_success = true;
-  
-  $sendmail_success = mail($to, $subject, $message, $headers);
-  
-	if($sendmail_success) {
+	
+	$sendmail_success = mail($to, $subject, $message, $headers);
+	
+	if ($sendmail_success) {
 		echo json_encode(array(
-			'message' => 'Hooray, thank you for submitting the information! <br /><br />' . $data[0] . ' <br />Please keep it for further reference.',
-			'status' => 'success'
-	 	));
+											 'message' => 'Hooray, thank you for submitting the information! <br /><br />' . $data[0] . ' <br />Please keep it for further reference.',
+											 'status'  => 'success'
+										 ));
 	} else {
 		echo json_encode(array(
-			'message' => 'The Mail could not be sent! <br /><br />Please try again later or contact the administrator.',
-			'status' => 'error'
-	  ));
+											 'message' => 'The Mail could not be sent! <br /><br />Please try again later or contact the administrator.',
+											 'status'  => 'error'
+										 ));
 	}
-
+	
 }

@@ -1,4 +1,4 @@
-$( function () {
+$(function () {
   console.log("document loaded");
   checkCookie();
   checkDNT();
@@ -16,10 +16,10 @@ $( function () {
     let dataFields = [];
     dataFields.push('Token: ' + $('#token-id span').text());
 
-    $('.data-point').each(function(key, value) {
+    $('.data-point').each(function (key, value) {
       //console.log(value);
       //console.log(key + ': ' + value.innerText);
-      dataFields.push( value.innerText );
+      dataFields.push(value.innerText);
     });
     //console.log(dataFields);
 
@@ -41,7 +41,7 @@ $( function () {
       console.log(response);
       $(responseMessage_container).show().html(response['message']);
 
-      if(response['status'] == 'success') {
+      if (response['status'] == 'success') {
         $(responseMessage_container).addClass('success');
         // disable the click action via class to not submit multiple times
         $(sendEmail_button).addClass('disabled').attr('disabled', 'disabled');
@@ -57,7 +57,7 @@ $( function () {
     });
   });
 
-  $('#captureScreen').on('click',function (event) {
+  $('#captureScreen').on('click', function (event) {
     console.log('capture clicked');
     html2canvas(document.querySelector("#capture")).then(canvas => {
 
@@ -72,11 +72,11 @@ $( function () {
       $.fancybox.open({
         src: dataURL,
         type: 'image',
-        opts : {
-          caption : 'Please download or save the image to your device',
+        opts: {
+          caption: 'Please download or save the image to your device',
           /*toolbar  : false,
           smallBtn : true,*/
-          buttons : [
+          buttons: [
             'download',
             'close'
           ]
@@ -87,7 +87,7 @@ $( function () {
   });
 
 
-  $('#accept-mail-terms').on('click', function() {
+  $('#accept-mail-terms').on('click', function () {
     if (this.checked) {
       $('#sendEmail').removeClass('disabled');
     } else {
@@ -97,15 +97,14 @@ $( function () {
 
 });
 
-$( window ).on("load", function () {
+$(window).on("load", function () {
   console.log("window loaded");
 });
 
-$( window ).on('resize', function () {
+$(window).on('resize', function () {
   console.log("window resized");
   checkBrowser();
 });
-
 
 
 /*-------------------------------------
