@@ -7,7 +7,7 @@ The user can take a screenshot of the information or send it directly via E-Mail
 # Requirements
 * Webserver or localhost with PHP 7.4 or higher
 * Mailserver so send vie SMTP (Optional)
-* Composer to install dependencies (Optional) 
+* Composer to install dependencies (required)
 
 # Screenshot
 Desktop and Mobile view
