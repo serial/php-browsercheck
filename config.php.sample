@@ -8,13 +8,13 @@ const USE_PHPMAILER = true;
 /*
  * Mail settings for PHPMailer
  */
-const MAIL_TO						 	= "to@mail-address";
-const MAIL_FROM           = "from@mail-address";
-const MAIL_FROMNAME       = "From Name";
-const MAIL_REPLYTO        = "replyto@mail-address";
-const MAIL_HOST          	= "mail.host.tld";
-const MAIL_USERNAME       = "username";
-const MAIL_PASSWORD       = "password";
-const MAIL_PORT           = 587;
-const MAIL_SECURITY       = "tls";
+const MAIL_TO						 	= "to@mail-address";      //required
+const MAIL_FROM           = "from@mail-address";    //required
+const MAIL_FROMNAME       = "From Name";            //required
+const MAIL_REPLYTO        = "replyto@mail-address"; //optional
+const MAIL_HOST          	= "mail.host.tld";        //required for PHPMailer
+const MAIL_USERNAME       = "username";             //required for PHPMailer
+const MAIL_PASSWORD       = "password";             //required for PHPMailer
+const MAIL_PORT           = 587;                    //required for PHPMailer
+const MAIL_SECURITY       = "tls";                  //required for PHPMailer
 

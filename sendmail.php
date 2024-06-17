@@ -26,7 +26,7 @@ foreach ($array as $key => $value) {
 }
 
 
-$message = '<b>Browser Check</b> <br><br>';
+$message = '<b>Browser Check Data</b> <br><br>';
 
 /*
  * Iterate over the array and append the values to the message
@@ -38,13 +38,15 @@ foreach ($data as $key => $value) {
 $message .= "<br>";
 $message .= "Timestamp: " . date('d.m.Y H:i:s', $_SERVER['REQUEST_TIME']);
 $message .= "<br><br>";
-$message .= 'User-Agent: '.$_SERVER['HTTP_USER_AGENT'];
-$message .= "<br>";
 $message .= 'IP: '.$_SERVER['REMOTE_ADDR'];
 $message .= "<br>";
 $message .= 'Host: '.$_SERVER['HTTP_HOST'];
 $message .= "<br>";
 $message .= 'Referer: '.$_SERVER['HTTP_REFERER'];
+$message .= "<br>";
+$message .= 'Browser locales: '.$_SERVER['HTTP_ACCEPT_LANGUAGE'];
+$message .= "<br>";
+$message .= 'User-Agent: '.$_SERVER['HTTP_USER_AGENT'];
 
 
 
@@ -74,7 +76,7 @@ if(USE_PHPMAILER) {
 		//Recipients
 		$mail->setFrom(MAIL_FROM, MAIL_FROMNAME);
 		$mail->addAddress(MAIL_TO);     //Add a recipient
-		$mail->addReplyTo(MAIL_REPLYTO, MAIL_FROMNAME);
+		//$mail->addReplyTo(MAIL_REPLYTO, MAIL_FROMNAME);
 		//$mail->addCC('cc@example.com');
 		//$mail->addBCC('bcc@example.com');
 
@@ -84,7 +86,7 @@ if(USE_PHPMAILER) {
 
 		//Content
 		$mail->isHTML(true);                                  //Set email format to HTML
-		$mail->Subject = 'Browser Check';
+		$mail->Subject = 'Browser Check - ' . $data[0];							// Subject with Token
 		$mail->Body    = $message;
 		//$mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 
@@ -112,10 +114,10 @@ if(USE_PHPMAILER) {
 } else {
 
 	$to = MAIL_TO;
-	$subject = 'Browser Check';
+	$subject = 'Browser Check - ' . $data[0];												// Subject with Token
 
 	$headers = 'From: ' . MAIL_FROM . "\r\n";
-  $headers .=	'Reply-To: ' . MAIL_REPLYTO . "\r\n" ;
+  //$headers .=	'Reply-To: ' . MAIL_REPLYTO . "\r\n" ;
 
 	$headers .=	'X-Mailer: PHP/' . phpversion();
 	$headers .= "MIME-Version: 1.0\r\n";
@@ -127,9 +129,15 @@ if(USE_PHPMAILER) {
   $sendmail_success = mail($to, $subject, $message, $headers);
   
 	if($sendmail_success) {
-		echo json_encode(array('message' => 'Hooray, thank you for submitting the information!'));
+		echo json_encode(array(
+			'message' => 'Hooray, thank you for submitting the information! <br /><br />' . $data[0] . ' <br />Please keep it for further reference.',
+			'status' => 'success'
+	 	));
 	} else {
-		echo json_encode(array('message' => 'The Mail could not be sent! Please try again later.'));
+		echo json_encode(array(
+			'message' => 'The Mail could not be sent! <br /><br />Please try again later or contact the administrator.',
+			'status' => 'error'
+	  ));
 	}
 
 }

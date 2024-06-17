@@ -32,17 +32,18 @@ function n_digit_random($digits) {
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="assets/libs/jquery.fancybox-3.5.7.min.css"/>
     <link rel="stylesheet" href="assets/fonts/fontawesome-pro-6.5.2-web/css/all.min.css">
-    
+
     <style>
+				/* Set to display: none; to prevent the page from flickering */
         body {
-            display: none;
+					display: none;
         }
     </style>
 </head>
 <body>
 
 <div class="browser-check-container">
-    
+
     <?php
     //if ?debug=true is set in the url, the debug info will be displayed
     if (isset($_GET['debug']) && $_GET['debug'] == 'true') : ?>
@@ -60,9 +61,10 @@ function n_digit_random($digits) {
           echo "<hr />";
           ?>
         </div>
-    
+
         <div class="debug object">
           <?php
+					print_pre($_SERVER['HTTP_ACCEPT_LANGUAGE']);
           echo "<h3>UA object</h3>";
           print_pre($detect);
           ?>
@@ -91,7 +93,7 @@ function n_digit_random($digits) {
                   <?php echo $detect->os->name; ?>
                 </div>
             </div>
-            
+
             <div class="data-point os-version">
                 <div class="label">
                     OS Version
@@ -104,7 +106,7 @@ function n_digit_random($digits) {
                   ?>
                 </div>
             </div>
-            
+
             <div class="data-point browser-name">
                 <div class="label">
                     Browser
@@ -181,25 +183,30 @@ function n_digit_random($digits) {
                 <i class="fa-thin fa-timer"></i> Time: <?php echo date('d.m.Y - H:i:s', $_SERVER['REQUEST_TIME']); ?>
             </div>
 
+						<div class="client-preferred-locales text-center small">
+							<i class="fa-thin fa-language"></i>
+							Locales: <?php echo $_SERVER['HTTP_ACCEPT_LANGUAGE']; ?>
+						</div>
+
             <div class="host-info text-center small">
                 <i class="fa-thin fa-location-crosshairs"></i>
                 IP: <?php echo $_SERVER['REMOTE_ADDR']; ?> -
                 Host: <?php echo $_SERVER['HTTP_HOST']; ?>
             </div>
-            
+
             <div class="ua-string text-center small">
                 <i class="fa-thin fa-browser"></i> <?php echo $_SERVER['HTTP_USER_AGENT']; ?>
             </div>
-            
+
         </div>
 
     </div>
-    
+
     <div class="checkbox-wrapper">
         <input id="accept-mail-terms" type="checkbox" />
         <label for="accept-mail-terms">I confirm sending the mail with information to the webmaster</label>
     </div>
-    
+
     <div class="actions">
         <a class="button disabled" id="sendEmail">Send Email</a>
         <a class="button" id="captureScreen">Capture Screen</a>
@@ -219,17 +226,17 @@ function n_digit_random($digits) {
 
     <a id="lightbox-link" href="" style="display:none;"></a>
 
-    
+
     <footer>
         <div class="separator"></div>
-        
+
         <div class="counter-hits text-center">
           <?php
           //variable $count comes from counter.php
           echo "Page Hits: " . $count;
           ?>
         </div>
-        
+
         <div class="copyright">
             <p>
                 <i class="fa-light fa-copyright"></i> <?php echo date("Y"); ?>
@@ -239,9 +246,9 @@ function n_digit_random($digits) {
                 <a href="https://github.com/serial" target="_blank"><i class="fa-brands fa-github"></i> Michael Höse</a>
             </p>
         </div>
-        
+
     </footer>
-    
+
 </div>
 
 
