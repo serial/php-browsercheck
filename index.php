@@ -90,7 +90,16 @@ function n_digit_random($digits) {
 				</div>
 				<hr/>
 				<div class="value">
-					<?php echo $detect->os->name; ?>
+					<?php
+					// Mac OS has an alias
+					if (isset($detect->os->alias)) {
+						echo $detect->os->alias;
+					}
+					// Windows devices have a name
+					else if (isset($detect->os->name)) {
+						echo $detect->os->name;
+					}
+					?>
 				</div>
 			</div>
 
@@ -101,9 +110,18 @@ function n_digit_random($digits) {
 				<hr/>
 				<div class="value">
 					<?php
-					// if alias is not available it must be mobile or tablet with a value
-					if (isset($detect->os->version->alias)) : echo $detect->os->version->alias;
-					else : echo $detect->os->version->value; endif;
+					// Windows devices have a version alias
+					if (isset($detect->os->version->alias)) {
+						echo $detect->os->version->alias;
+					}
+					// If no alias is set, it is mostly a mobile device, but could also be a mac
+					else if (isset($detect->os->version->value)) {
+						echo $detect->os->version->value;
+					}
+					// Try to get the name of the OS
+					else if (isset($detect->os->name)) {
+						echo $detect->os->name;
+					}
 					?>
 				</div>
 			</div>
