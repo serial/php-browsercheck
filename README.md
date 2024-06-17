@@ -21,13 +21,11 @@ Desktop and Mobile view
 4. Choose if you want to use the PHPMailer or the integrated PHP mail function
 5. Open the index.php file in your browser
 
-
 # Alternative installation
 1. Upload the files to your webserver
 2. Install composer on your server and run `composer install --no-dev --optimize-autoloader` inside the project folder
 3. Copy `config.php.sample` to `config.php` and set the settings
 4. Open the index.php file in your browser
-
 
 # Configuration / troubleshooting
 * Settings need to be set in the `config.php` file
@@ -42,6 +40,7 @@ Desktop and Mobile view
   * the user's IP address
   * the user's browser resolution
   * the user's device type
+  * the user's browser preferred language
 * Screenshot / Capture
   * A button to take a screenshot / capture the information in a canvas
   * The canvas is shown in a nice fancybox
@@ -52,17 +51,15 @@ Desktop and Mobile view
     * The SMTP server settings can be configured in the config.php file
   * Shows a message depending on the success or failure of the mail function
   * Send email button is disabled after sending the mail
-* Styled messages for success and error
+  * Sendmail function is handled via ajax request
+  * Styled messages for success and error responses
 * Shows a unique token which is also sent via mail and on the screenshot
 * Optimized for mobile devices
-
 
 # Dev Notes
 - For updating the browser and device detection, you can use the composer package manager.
   - You can easily update the WhichBrowser library by running the command `composer update whichbrowser/parser` in the project folder.
 - Styling is done with LESS and compiled to CSS
-
-
 
 # References
 This project uses the following libraries
@@ -80,4 +77,3 @@ This project uses the following libraries
     * Roboto Mono (locally integrated Google Font)
   * Icon Library
     * Font Awesome Pro (6.5.2)
-
