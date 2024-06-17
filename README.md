@@ -1,9 +1,8 @@
 # Description
 ## Browsercheck
-A simple tool to check the browser version and the operating system of the user.
-The Browser User-Agent is detected and displayed in a nice way with some extra information like the IP address, the browser resolution and the device type.
-The user can take a screenshot of the information or send it directly via E-Mail (PHPMailer or PHP mail function).
-If you use this project, ideas or any part of the code, I kindly ask that you mention the original project or the author.
+A simple tool to check the client browser version and operating system with some more details.
+The Browser User-Agent is detected and displayed in a nice way with some extra information see [features](#features).
+The user can take a screenshot of the information or send it directly via E-Mail (PHPMailer or PHP mail function) to a given address.
 
 # Requirements
 * Webserver or localhost with PHP 7.4 or higher

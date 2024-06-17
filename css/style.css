@@ -23,6 +23,13 @@ html {
 body {
   display: flex !important;
 }
+.debug {
+  padding-left: 1rem;
+}
+.debug pre {
+  border-left: 2px solid #ff5c5c;
+  padding-left: 1rem;
+}
 .hidden {
   display: none !important;
 }
@@ -86,13 +93,59 @@ body {
 .data-point.window-size .value:after {
   content: " px";
 }
+.checkbox-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 60%;
+  margin: 0 auto 1rem;
+  column-gap: 1rem;
+  font-size: 1rem;
+  line-height: 100%;
+}
+.checkbox-wrapper input[type=checkbox] {
+  display: none;
+}
+.checkbox-wrapper input[type=checkbox] + label:before {
+  font-family: 'Font Awesome 6 Pro';
+  display: inline-block;
+  content: "\f096";
+  margin-right: 0.5rem;
+}
+.checkbox-wrapper input[type=checkbox]:checked + label:before {
+  content: "\f14a";
+}
+.checkbox-wrapper input[type=checkbox] + label:before {
+  font-family: 'Font Awesome 6 Pro';
+  display: inline-block;
+}
+.checkbox-wrapper label {
+  display: flex;
+}
+.notice {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 60%;
+  margin: 0 auto;
+  column-gap: 1rem;
+  font-size: 0.9rem;
+  line-height: 100%;
+  opacity: 0.5;
+}
+.notice i {
+  display: flex;
+  align-items: center;
+  font-size: 1.2rem;
+  color: #000;
+}
 .actions {
   display: flex;
   flex-direction: row;
   justify-content: center;
   width: 60%;
   margin: 0 auto;
-  column-gap: 2rem;
+  column-gap: 4rem;
 }
 .button {
   background-color: #222;
@@ -116,7 +169,7 @@ body {
   background-color: black;
   cursor: not-allowed;
   pointer-events: none;
-  opacity: 0.65;
+  opacity: 0.55;
 }
 .button:hover {
   background-color: black;
@@ -177,12 +230,17 @@ footer .separator {
   margin: 0 auto 2rem;
   opacity: 0.5;
 }
-footer .copyright {
+footer .copyright,
+footer .counter-hits {
   font-family: "Roboto Mono", Monospaced, 'Helvetica', sans-serif;
   font-size: 0.8rem;
   font-weight: 500;
   color: #000;
   text-align: center;
+}
+.mobile-container {
+  width: 90%;
+  margin: 0 auto;
 }
 @media only screen and (max-width: 1280px) {
   .browser-check-container .browser-check-content {
@@ -215,6 +273,9 @@ footer .copyright {
   }
   .browser-check-container .data-points-wrapper .value {
     font-size: 1.2rem;
+  }
+  .browser-check-container .checkbox-wrapper {
+    width: 90%;
   }
 }
 @media only screen and (max-width: 400px) {

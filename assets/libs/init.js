@@ -86,6 +86,15 @@ $( function () {
     });
   });
 
+
+  $('#accept-mail-terms').on('click', function() {
+    if (this.checked) {
+      $('#sendEmail').removeClass('disabled');
+    } else {
+      $('#sendEmail').addClass('disabled');
+    }
+  });
+
 });
 
 $( window ).on("load", function () {
@@ -160,12 +169,6 @@ function checkBrowser() {
   let document_size = [];
   document_size['height'] = $(document).height();
   document_size['width'] = $(document).width();
-
-
-  //console.log(browser);
-  //console.log(browser_size);
-  //console.log(document_size);
-
 
   $('.window-size .value').html(browser_size['width'] + ' x ' + browser_size['height']);
   //$('.ua-string').html(browser.ua);

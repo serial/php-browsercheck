@@ -3,6 +3,9 @@ require 'vendor/autoload.php';
 
 $detect = new WhichBrowser\Parser($_SERVER['HTTP_USER_AGENT']);
 //$detect = new WhichBrowser\Parser(getallheaders());
+
+include 'counter.php';
+global $count;
 ?>
 
 <?php
@@ -39,24 +42,32 @@ function n_digit_random($digits) {
 <body>
 
 <div class="browser-check-container">
-
-    <div class="debug short hidden">
-      <?php
-      echo "Browser: {$detect->browser->toString()}";
-      echo "<br />";
-      echo "Engine: {$detect->engine->toString()}";
-      echo "<br />";
-      echo "OS: {$detect->os->toString()}";
-      echo "<br />";
-      echo "Device: {$detect->device->type}";
-      echo "<br />";
-      echo "<hr />";
-      ?>
-    </div>
-
-    <div class="debug object hidden">
-      <?php print_pre($detect); ?>
-    </div>
+    
+    <?php
+    //if ?debug=true is set in the url, the debug info will be displayed
+    if (isset($_GET['debug']) && $_GET['debug'] == 'true') : ?>
+        <div class="debug short">
+          <?php
+          echo "<h3>toString() functions</h3>";
+          echo "Browser: {$detect->browser->toString()}";
+          echo "<br />";
+          echo "Engine: {$detect->engine->toString()}";
+          echo "<br />";
+          echo "OS: {$detect->os->toString()}";
+          echo "<br />";
+          echo "Device: {$detect->device->type}";
+          echo "<br />";
+          echo "<hr />";
+          ?>
+        </div>
+    
+        <div class="debug object">
+          <?php
+          echo "<h3>UA object</h3>";
+          print_pre($detect);
+          ?>
+        </div>
+    <?php endif; ?>
 
 
     <div id="capture" class="browser-info-display wrapper">
@@ -183,11 +194,22 @@ function n_digit_random($digits) {
         </div>
 
     </div>
-
-
+    
+    <div class="checkbox-wrapper">
+        <input id="accept-mail-terms" type="checkbox" />
+        <label for="accept-mail-terms">I confirm sending the mail with information to the webmaster</label>
+    </div>
+    
     <div class="actions">
-        <a class="button" id="sendEmail">Send Email</a>
+        <a class="button disabled" id="sendEmail">Send Email</a>
         <a class="button" id="captureScreen">Capture Screen</a>
+    </div>
+
+    <div class="notice text-center hidden">
+        <i class="fa-thin fa-square-info"></i>
+        <p>
+            This site will not store any information
+        </p>
     </div>
 
     <div class="response">
@@ -200,6 +222,14 @@ function n_digit_random($digits) {
     
     <footer>
         <div class="separator"></div>
+        
+        <div class="counter-hits text-center">
+          <?php
+          //variable $count comes from counter.php
+          echo "Page Hits: " . $count;
+          ?>
+        </div>
+        
         <div class="copyright">
             <p>
                 <i class="fa-light fa-copyright"></i> <?php echo date("Y"); ?>
