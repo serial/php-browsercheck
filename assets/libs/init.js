@@ -109,7 +109,7 @@ $(window).on('resize', function () {
 
 /*-------------------------------------
  * Functions
- *------------------------------------/
+ *-----------------------------------*/
 
 /*
  * Check if cookies can be set, then javascript is also enabled
